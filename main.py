@@ -10,17 +10,18 @@ with open('testfile.md', 'r') as f: # open given md file with read priv.
     text = f.read()
 
     document = Document('Hello there.docx') 
-        # This method is like "create from template" button in word, doesn't change original or create a new one.
+        # This method creates a new word document from the file name given. (like "create from template" button)
     document.add_paragraph('lorem ipsum dolor sit amet.')
-        ''' 
-            Find a way to replace 'lorem' with text from markdown, and 
-            designating where I want the text to be placed, maybe there is a
-            replace method or something that takes a location in the word doc.
+    ''' 
+    Find a way to replace 'lorem' with text from markdown, and 
+    designating where I want the text to be placed, maybe there is a
 
-            or just physically find the location (line number, line column) by hand
-            because the template is always going to be the same
-        '''
-    document.save('new-document.docx')
+    ***replace method*** or something that takes a location and text as an input.
+
+    or just physically find the location (line number, line column) by hand
+    because the template is always going to be the same
+    '''
+    document.save('new-document.docx') # this method saves the current document object, and renames it according to the string given
 
     f.close()
 # write a new html file and use 'html' as the content
