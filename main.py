@@ -1,67 +1,42 @@
 #!/usr/bin/python3
-
-import markdown2
+from __future__ import print_function
+# from mailmerge import MailMerge
+'''
+    find an alternative to mail-merge; not working on machine or repl.it
+    going to try to just use 'docx' and doing it by hand.
+'''
+from datetime import date
 from docx import Document
 from docx.shared import Inches 
+import markdown2
 
-# open markdown, convert to HTML
-with open('testfile.md', 'r') as f: # open given md file with read priv.
+# Change to absolute location of status report template file [x] 
+template = "/Users/dguisande/Library/Group Containers/UBF8T346G9.Office/User Contenf.localized/Templates.localized/\~\$-Berkeley-Meeting-Agenda.dotx"
 
-    text = f.read()
+document = MailMerge(template)
+print(document.get_merge_fields()) # This print method will show if there are any merge fields with the Berkeley template I have
 
-    document = Document('Hello there.docx') 
-        # This method creates a new word document from the file name given. (like "create from template" button)
-    document.add_paragraph('lorem ipsum dolor sit amet.')
-    ''' 
-    Find a way to replace 'lorem' with text from markdown, and 
-    designating where I want the text to be placed, maybe there is a
+'''
+    in order for the code above to work, I need to assign merge fields to the template I am going to be using and once that is defined 
+    this package 'mailmerge' will be able to use those as the fields to have text inserted, 
+     
+     and that text can be populated into a dictionary like this:
 
-    ***replace method*** or something that takes a location and text as an input.
+     document.merge (
+        status='Gold',
+        city='Springfield',
+        phone_number='800-555-5555',
+        etc...)
 
-    or just physically find the location (line number, line column) by hand
-    because the template is always going to be the same
-    '''
-    document.save('new-document.docx') # this method saves the current document object, and renames it according to the string given
-
-    f.close()
-# write a new html file and use 'html' as the content
-# with open('testwebsite.html', 'w') as f:
-    # f.write(html)
+    document.write('name of new file.docx')
+'''
 
 # --  -- -- -- -- -- -- -- -- -- --
 '''
-    I need to 'open' the md file, and insert certain blocks of text into certain
-    areas inside of a word document
+    I need to 'open' the md file, and insert certain blocks of text into the method defined on line 11, 
+    once that is complete, I can write to a file that is built of the 'template' defined at the beginning go the script. 
+
 
     Food for thought: Can you convert a word document into a html file?
         yes, I can, so maybe I can translate md -> html -> word-document
 '''
-# Order of the script
-
-# Import libraries ------
-
-   # Markdwon2, pytho-docx 
-
-# instantiate helper methods or classes ------
-
-# ---- create a class for recieving and processing markdown
-
-# ---- pulling from the directory that inkdrop stores markdown
-
-# ---- process errors at the beginning to make sure all markdown is comptabible with 'markdown2'    
-
-# ---- create a class for cleaning and creating a new word document
-
-      # translate the markdown into the library's (python-docx) 'add' method equivalents
-
-      # store as dict with the markdown and the helper method (key : value) 
-
-      # create a new document (copy) from the status-report template file 
-
-      # use a function to loop through the dict and add the markdown content into the new document 
-
-      # save dynamically with 'status-report' + today() and then save to desktop or icloud desktop.  
-
-      # add to PATH of work computer and find a fast way to execute the scrip (CLI or icon or make into MacOSX application)
-
-# ---- create main method to fully execute the all steps.   
