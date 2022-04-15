@@ -3,3 +3,4 @@
 .git
 /bin
 /lib
+.DS_Store
